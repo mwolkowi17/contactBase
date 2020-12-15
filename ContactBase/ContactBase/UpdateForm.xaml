@@ -10,13 +10,13 @@
             <TableRoot>
                 <TableSection Title="Entry Name">
 
-                    <EntryCell x:Name="namecell" Placeholder="{Binding Name}" Keyboard="Text"  />
+                    <EntryCell x:Name="namecell"  Text="{Binding Name}" Keyboard="Text"  />
 
-                    <EntryCell x:Name="phonecell" Placeholder="{Binding PhoneNr}" Keyboard="Numeric"/>
+                    <EntryCell x:Name="phonecell" Text="{Binding PhoneNr}" Keyboard="Numeric"/>
                 </TableSection>
                 <TableSection Title="Details">
-                    <EntryCell x:Name="additionlcell" Placeholder="{Binding AditionalInfo}" Keyboard="Text"/>
-                    <EntryCell x:Name="emailcell" Placeholder="{Binding Email}" Keyboard="Email"/>
+                    <EntryCell x:Name="additionlcell" Text="{Binding AditionalInfo}" Keyboard="Text"/>
+                    <EntryCell x:Name="emailcell" Text="{Binding Email}" Keyboard="Email"/>
                 </TableSection>
 
             </TableRoot>
