@@ -2,11 +2,12 @@
 using System.IO;
 using SQLite;
 using Xamarin.Forms;
-using HelloWorld.Droid;
+
+using ContactBase.Droid;
 
 [assembly: Dependency(typeof(SQLiteDb))]
 
-namespace HelloWorld.Droid
+namespace ContactBase.Droid
 {
 	public class SQLiteDb : ISQLiteDb
 	{

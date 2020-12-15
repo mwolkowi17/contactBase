@@ -10,7 +10,7 @@ namespace ContactBase
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new ListOfContacts());
         }
 
         protected override void OnStart()

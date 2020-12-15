@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ContactBase.Models;
+using SQLite;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +15,41 @@ namespace ContactBase
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListOfContacts : ContentPage
     {
+        public SQLiteAsyncConnection _connection;
+        public ObservableCollection<Contact> _contacts;
+
         public ListOfContacts()
         {
             InitializeComponent();
+            _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
+        }
+
+        protected override async void OnAppearing()
+        {
+            await _connection.CreateTableAsync<Contact>();
+            var contacts = await _connection.Table<Contact>().ToListAsync();
+            _contacts = new ObservableCollection<Contact>(contacts);
+            contactListView.ItemsSource = _contacts;
+            base.OnAppearing();
+        }
+
+         void OnAdd(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new EntryForm());
+        }
+
+        void Delete(object sender, System.EventArgs e)
+        {
+
+        }
+
+       async private void contactListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+                return;
+            var contactselected = e.SelectedItem as Contact;
+            await Navigation.PushAsync(new Details(contactselected));
+            contactListView.SelectedItem = null;
         }
     }
 }

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ContactBase.EntryForm">
+    <StackLayout>
+        <TableView Intent="Form">
+            <TableRoot>
+                <TableSection Title="Entry Name">
+
+                    <EntryCell x:Name="namecell"  Placeholder="Name" Keyboard="Text"  />
+                    
+                    <EntryCell x:Name="phonecell" Placeholder="Phone" Keyboard="Numeric"/>
+                </TableSection>
+                <TableSection Title="Details">
+                    <EntryCell x:Name="additionlcell" Placeholder="Aditional Info" Keyboard="Text"/>
+                    <EntryCell x:Name="emailcell" Placeholder="Email" Keyboard="Email"/>
+                </TableSection>
+
+            </TableRoot>
+
+        </TableView>
+        <Button Text="add contact" Clicked="Button_Clicked"/>
+    </StackLayout>
+</ContentPage>
