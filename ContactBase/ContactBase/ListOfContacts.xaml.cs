@@ -51,5 +51,29 @@ namespace ContactBase
             await Navigation.PushAsync(new Details(contactselected));
             contactListView.SelectedItem = null;
         }
+
+       async private void MenuItem_Clicked(object sender, EventArgs e)
+        {
+           
+            var menuitem= sender as MenuItem;
+
+            var contactselected = menuitem.CommandParameter as Contact;
+            await _connection.DeleteAsync(contactselected);
+            var contacts = await _connection.Table<Contact>().ToListAsync();
+            _contacts = new ObservableCollection<Contact>(contacts);
+
+
+            contactListView.ItemsSource = _contacts;
+        }
+
+         private void MenuItem_Clicked_1(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+
+            var contactselected = menuitem.CommandParameter as Contact;
+
+            Navigation.PushAsync(new UpdateForm(contactselected));
+
+        }
     }
 }
