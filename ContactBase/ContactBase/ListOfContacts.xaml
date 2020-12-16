@@ -21,6 +21,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <SearchBar Placeholder="Search..." TextChanged="SearchBar_TextChanged"/>
     </StackLayout>
     
 </ContentPage>

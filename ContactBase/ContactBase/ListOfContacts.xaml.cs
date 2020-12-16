@@ -75,5 +75,21 @@ namespace ContactBase
             Navigation.PushAsync(new UpdateForm(contactselected));
 
         }
+
+        async private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            var contacts = await _connection.Table<Contact>().ToListAsync();
+            _contacts = new ObservableCollection<Contact>(contacts);
+           
+            var contactsFiltred = _contacts.Where(n => n.Name == e.NewTextValue).ToList();
+            if (e.NewTextValue == "")
+            { contactListView.ItemsSource = _contacts; }
+            else
+            {
+                contactListView.ItemsSource = contactsFiltred;
+            }
+            
+        }
     }
 }
